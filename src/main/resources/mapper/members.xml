@@ -74,8 +74,16 @@
         )
     </select>
     <select id="getUserById" parameterType="String" resultType="UserDetailsVO">
-        SELECT * users WHERE user_id = #{user_id}
+        SELECT * FROM users WHERE id = #{id}
     </select>
+    <select id="getPasswordById" parameterType="String" resultType="String">
+        SELECT password FROM users WHERE id = #{id}
+    </select>
+    <update id="updatePassword" parameterType="map">
+        UPDATE users
+        SET password = #{password}
+        WHERE id = #{id}
+    </update>
 
 
 </mapper>
