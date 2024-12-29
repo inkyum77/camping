@@ -8,9 +8,13 @@ import com.ict.camping.domain.auth.service.MyUserDetailService;
 import com.ict.camping.domain.auth.vo.DataVO;
 import com.ict.camping.domain.auth.vo.UserDetailsVO;
 import com.ict.camping.domain.users.service.UsersService;
+import com.ict.camping.domain.users.vo.CampingSiteVO;
 import com.ict.camping.domain.users.vo.UsersVO;
 
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -259,13 +263,11 @@ public class UsersController {
         dataVO.setSuccess(true);
         dataVO.setMessage("비밀번호 맞음.");
       }
-
-      return dataVO;
     } catch (Exception e) {
       dataVO.setSuccess(false);
       dataVO.setMessage("error");
-      return dataVO;
     }
+    return dataVO;
   }
 
   // 비밀번호 변경
@@ -299,11 +301,46 @@ public class UsersController {
         dataVO.setSuccess(false);
         dataVO.setMessage("비밀번호 변경에 실패했습니다.");
       }
-      return dataVO;
     } catch(Exception e){
       dataVO.setSuccess(false);
       dataVO.setMessage("error : " + e );
-      return dataVO;
     }
+    return dataVO;
   }
+
+  // 내가 찜한 캠핑사이트 가져오기
+  @GetMapping("/getMyFavoriteCampingSites")
+  public DataVO getMyFavoriteCampingSites(@RequestHeader("Authorization") String authorizationHeader) {
+    DataVO dataVO = new DataVO();
+
+    try {
+      // 토큰 추출
+      String token = authorizationHeader.replace("Bearer ", "");
+      // 토큰 검증
+      if (!jwtUtil.validateToken(token)) {
+        dataVO.setSuccess(false);
+        dataVO.setMessage("유효하지 않은 토큰입니다.");
+        return dataVO;
+      }
+      // 사용자 ID 추출
+      String userId = jwtUtil.getUserIdFromToken(token);
+      System.out.println("유저 아이디: "+  userId);
+
+      // 내가 찜한 캠핑장 내용 가져오기(service에서 id로 contentId가져오고 그걸로 cvo 가져옴)
+      CampingSiteVO cvo = service.getMyFavoriteCampingSites(userId);
+      if(cvo != null){
+        dataVO.setData(cvo);
+      } else{
+        dataVO.setData(null);
+      }
+      dataVO.setSuccess(true);
+      
+    } catch (Exception e) {
+      dataVO.setSuccess(false);
+      dataVO.setMessage("error : " + e );
+    }
+
+    return dataVO;
+  }
+  
 }

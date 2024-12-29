@@ -1,12 +1,14 @@
 package com.ict.camping.domain.users.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ict.camping.domain.users.mapper.UsersMapper;
+import com.ict.camping.domain.users.vo.CampingSiteVO;
 import com.ict.camping.domain.users.vo.UsersVO;
 
 
@@ -72,5 +74,14 @@ public class UsersServiceImpl implements UsersService{
     map.put("id", id);
     map.put("password", password);
     return usersMapper.updatePassword(map);
+  }
+
+
+  @Override
+  public CampingSiteVO getMyFavoriteCampingSites(String id) {
+    List<String> contentIds = usersMapper.getMyFavoriteCampingSites(id);
+    CampingSiteVO cvo = usersMapper.getCampingSitesById(contentIds);
+
+    return cvo;
   }
 }

@@ -73,9 +73,9 @@ spring:
 
 
   datasource: 
-    url: jdbc:mysql://localhost:3306/ictedu_db
-    username: ictedu
-    password: 1111
+    url: jdbc:mysql://localhost:3306/camping
+    username: root
+    password: 8865
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 # 정적 파일(이미지, css, js 등)을 URL로 접근할 수 있도록 설정하는 옵션

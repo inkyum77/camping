@@ -85,5 +85,12 @@
         WHERE id = #{id}
     </update>
 
+    <select id="getMyFavoriteCampingSites" parameterType="String" resultMap="list">
+        SELECT contentId FROM campingsite_likes WHERE user_idx = #{id}
+    </select>
 
+    <select id="getCampingSitesById" parameterType="list" resultType="CampingSiteVO">
+        SELECT * FROM campingsites WHERE contentId = #{contentId}
+    </select>
+    
 </mapper>
