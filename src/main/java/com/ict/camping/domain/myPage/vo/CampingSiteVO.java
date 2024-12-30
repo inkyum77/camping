@@ -1,4 +1,4 @@
-package com.ict.camping.domain.users.vo;
+package com.ict.camping.domain.myPage.vo;
 
 import lombok.Data;
 

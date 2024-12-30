@@ -73,7 +73,7 @@ spring:
 
 
   datasource: 
-    url: jdbc:mysql://localhost:3306/camping
+    url: jdbc:mysql://localhost:3306/ictedu_db
     username: root
     password: 8865
     driver-class-name: com.mysql.cj.jdbc.Driver
