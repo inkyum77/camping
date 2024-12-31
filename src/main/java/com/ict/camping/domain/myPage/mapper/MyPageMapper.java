@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ict.camping.domain.myPage.vo.CampingSiteVO;
+import com.ict.camping.domain.myPage.vo.InquiryVO;
 import com.ict.camping.domain.myPage.vo.UsageHistoryVO;
 
 
@@ -17,4 +18,8 @@ public interface MyPageMapper {
     int deleteMyCampingSite(Map<String, String> map);
 
     List<UsageHistoryVO> getUsageHistory(String user_idx);
+
+    String getCampingLikesCount(String contentId);
+
+    List<InquiryVO> getMyInquiryHistory(String user_idx);
 }
