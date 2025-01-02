@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.ict.camping.domain.myPage.mapper.MyPageMapper;
 import com.ict.camping.domain.myPage.vo.CampingSiteVO;
 import com.ict.camping.domain.myPage.vo.InquiryVO;
+import com.ict.camping.domain.myPage.vo.MyReviewVO;
 import com.ict.camping.domain.myPage.vo.UsageHistoryVO;
 import com.ict.camping.domain.users.mapper.UsersMapper;
 
@@ -56,5 +57,10 @@ public class MyPageServiceImpl implements MyPageService{
     @Override
     public List<InquiryVO> getMyInquiryHistory(String user_idx) {
         return myPageMapper.getMyInquiryHistory(user_idx);
+    }
+
+    @Override
+    public List<MyReviewVO> getMyReviews(String user_idx) {
+        return myPageMapper.getMyReviews(user_idx);
     }
 }

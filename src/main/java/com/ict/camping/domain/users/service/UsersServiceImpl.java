@@ -74,4 +74,13 @@ public class UsersServiceImpl implements UsersService{
     map.put("password", password);
     return usersMapper.updatePassword(map);
   }
+
+
+  @Override
+  public int updateEmail(String id, String email) {
+    Map<String, String> map = new HashMap<>();
+    map.put("id", id);
+    map.put("email", email);
+    return usersMapper.updateEmail(map);
+  }
 }

@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class FileVO {
-    private String fileIdx, fileName, filePath, fileSize, fileType, type, createdAt;
+    private String file_idx, file_name, file_path, file_size, file_type, type, created_at;
 }

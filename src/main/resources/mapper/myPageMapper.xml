@@ -37,4 +37,11 @@
     <select id="getCampingLikesCount">
         SELECT COUNT(*) FROM camping_likes WHERE contentId = #{contentId}
     </select>
+
+    <select id="getMyReviews" parameterType="String" resultType="MyReviewVO">
+        SELECT r.*, f.file_name, f.file_path, c.facltNm, c.firstImageUrl FROM camping_reviews r
+        LEFT JOIN files f ON r.file_idx = f.file_idx
+        LEFT JOIN campingsites c ON r.contentId = c.contentId
+        WHERE user_idx = #{user_idx};
+    </select>
 </mapper>

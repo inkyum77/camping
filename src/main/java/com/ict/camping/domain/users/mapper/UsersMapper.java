@@ -19,5 +19,6 @@ public interface UsersMapper  {
   UserDetailsVO getUserById(String id);
   String getPasswordById(String id);
   int updatePassword(Map<String, String> map);
+  int updateEmail(Map<String, String> map);
 
 }
